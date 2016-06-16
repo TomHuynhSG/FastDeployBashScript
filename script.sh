@@ -198,7 +198,7 @@ read  FTPuser
 
 
 # Main functions here 
-upload_init_files
+#upload_init_files
 create_path_directory
 create_domain_virtual_file
 deploy_website
