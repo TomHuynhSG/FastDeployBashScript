@@ -1,4 +1,13 @@
 #!/bin/bash
+function upload_init_files {
+	echo "Installing git!"
+	apt-get install git -y
+	cd /var/www
+	echo "Cloning bash script and zip file from Github"
+	git clone https://github.com/TheodoreDev/FastDeployBashScript.git
+	sudo chmod 700 -R /var/www/FastDeployBashScript
+	sudo chown root:root -R /var/www/FastDeployBashScript
+}
 
 function create_path_directory {
         echo "Create web directory at $directorypath..."
@@ -144,8 +153,10 @@ read  webmasteremail
 echo -e "Please enter domain name (ex: website.com.au ): \c "
 read  domainname
 echo "The domain name you entered is: $domainname"
-echo -e "Please enter web root directory path (ex: /var/www/website) : \c "
-read  directorypath
+echo -e "Please enter web root directory name (ex: website) : \c "
+read  directoryname
+directorypath="/var/www/$directoryname"
+
 echo "The domain name you entered is: $directorypath"
 echo -e "Please enter Linux OS Type (Debian or CentOS)"
 echo "1) Debian"
@@ -175,7 +186,9 @@ echo "The redirection choice you entered is: $RedirectionChoice"
 
 
 echo -e "Please enter path of zip file for deployment (ex: /home/user/website.zip) : \c "
-read  zipfilepath
+#read  zipfilepath
+zipfilepath="/var/www/FastDeployBashScript/deployProjectZip/grav-admin-upload.zip"
+echo "The redirection choice you entered is: $zipfilepath"
 
 echo -e "Please enter your Server IP for FTP creation: \c "
 read  IPServer
@@ -185,6 +198,7 @@ read  FTPuser
 
 
 # Main functions here 
+upload_init_files
 create_path_directory
 create_domain_virtual_file
 deploy_website
