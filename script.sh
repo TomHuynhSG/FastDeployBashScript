@@ -186,7 +186,7 @@ read  FTPuser
 create_path_directory
 create_domain_virtual_file
 deploy_website
-#install_ftp
-#create_ftp_user
+install_ftp
+create_ftp_user
 
 echo "Completed!!! Cheers :)"
